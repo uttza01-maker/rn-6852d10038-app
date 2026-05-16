@@ -1,50 +1,58 @@
-# Welcome to your Expo app 👋
+# 🚖 Taxi Fare Calculator App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+แอปพลิเคชันคำนวณค่าโดยสารแท็กซี่ (มิเตอร์) พัฒนาด้วย **React Native** และ **Expo (Expo Router)** เพื่ออำนวยความสะดวกในการประมาณการค่าเดินทางตามเกณฑ์อัตราค่าโดยสารรถยนต์รับจ้างบรรทุกคนโดยสารไม่เกินเจ็ดคนในเขตกรุงเทพมหานคร
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 หน้าตาของแอปพลิเคชัน (Screenshots)
 
+| หน้าแรก (Splash Screen) | หน้าคำนวณค่าโดยสาร | การแจ้งข้อมูลค่าโดยสาร |
+| :---: | :---: | :---: |
+<img src="https://github.com/user-attachments/assets/f49182ee-a306-4a5e-8efe-109042b56732" width="240" /> | <img src="https://github.com/user-attachments/assets/99a23522-9386-4c11-a829-f0d69564c795" width="240" /> | <img src="https://github.com/user-attachments/assets/1015bc08-8f2b-4954-8987-7ac8a59beac8" width="240" /> |
+
+---
+
+## ✨ คุณสมบัติของแอปพลิเคชัน (Features)
+
+* **Splash Screen หน่วงเวลา:** หน้าแรกของแอปพลิเคชันจะแสดงข้อมูลผู้จัดทำ พร้อมตัวหมุนโหลดวงกลม (`ActivityIndicator`) หน่วงเวลา 3 วินาทีก่อนเปลี่ยนหน้าอัตโนมัติ
+* **คำนวณตามเกณฑ์จริงแบบขั้นบันได:** คิดคำนวณค่าโดยสารตามระยะทางแยกเป็นช่วงกิโลเมตรอย่างถูกต้องตามกฎหมาย
+* **รองรับกรณีรถติด/รถจอดนิ่ง:** สามารถกรอกจำนวนนาทีที่รถติด (ความเร็วไม่เกิน 6 กม./ชม.) เพื่อนำมาคำนวณร่วมด้วยได้
+* **ระบบล้างข้อมูล (Reset):** มีปุ่ม "ยกเลิก" สำหรับล้างค่าในช่องกรอกข้อมูลทั้งหมดเพื่อเริ่มคำนวณใหม่
+* **ตรวจสอบข้อมูลนำเข้า (Validation):** มีระบบป้องกันการกรอกค่าติดลบ หรือค่าว่าง โดยจะแจ้งเตือนผ่าน `Alert` ทันที
+
+---
+
+## 🧮 อัตราค่าโดยสารที่ใช้ในการคำนวณ
+
+แอปพลิเคชันนี้อ้างอิงโครงสร้างการคำนวณราคาแบบขั้นบันได + เวลารถติด ดังนี้:
+
+| ระยะทาง | ค่าโดยสาร |
+| :--- | :--- |
+| **กิโลเมตรแรก** | 35 บาท |
+| **กิโลเมตรที่ 2 - 10** | 6.50 บาท / กม. |
+| **กิโลเมตรที่ 11 - 20** | 7.00 บาท / กม. |
+| **กิโลเมตรที่ 21 - 40** | 8.00 บาท / กม. |
+| **กิโลเมตรที่ 41 - 60** | 8.50 บาท / กม. |
+| **กิโลเมตรที่ 61 - 80** | 9.00 บาท / กม. |
+| **กิโลเมตรที่ 81 ขึ้นไป** | 10.50 บาท / กม. |
+| **กรณีรถติด (ความเร็ว < 6 กม./ชม.)** | 3.00 บาท / นาที |
+
+*หมายเหตุ: ผลลัพธ์สุดท้ายจะทำการปัดเศษเป็นจำนวนเต็มตามหลักมิเตอร์แท็กซี่จริง*
+
+---
+
+## 🛠️ เทคโนโลยีที่ใช้ (Tech Stack)
+
+* **Framework:** React Native (TypeScript)
+* **Tooling:** Expo SDK 50+
+* **Navigation:** Expo Router
+* **Styling:** StyleSheet (Pure CSS-in-JS)
+
+---
+
+## 🚀 วิธีการติดตั้งและรันโปรเจกต์ (Installation & Setup)
+
+1. **ดาวน์โหลดโปรเจกต์หรือ Clone Repository**
    ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   git clone <your-repository-url>
+   cd taxi-fare-calculator
